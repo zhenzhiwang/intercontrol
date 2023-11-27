@@ -4,9 +4,8 @@
 <table class="center">
     <tr>
     <td><img src="./assets/foot_kicks_shoulder.gif"></td>
-    <td><img src="./assets/shake_hands.gif"></td>
+    <td><img src="./assets/foot_push_and_pull.gif"></td>
     <td><img src="./assets/three_people_foot.gif"></td>
-    <td><img src="./assets/three_people.gif"></td>
     </tr>
 </table>
 <p style="margin-left: 2em; margin-top: -1em"></p>
@@ -14,10 +13,19 @@
 
 <table class="center">
     <tr>
+    <td><img src="./assets/three_people.gif"></td>
     <td><img src="./assets/hand-push-and-pull.gif"></td>
-    <td><img src="./assets/foot_push_and_pull.gif"></td>
+    <td><img src="./assets/shake_hands.gif"></td>
+    </tr>
+</table>
+<p style="margin-left: 2em; margin-top: -1em"></p>
+
+
+<table class="center">
+    <tr>
     <td><img src="./assets/foot_kicks_foot.gif"></td>
     <td><img src="./assets/back_shake_hands.gif"></td>
+    <td><img src="./assets/put_hand_on_shoulder_from_back.gif"></td>
     </tr>
 </table>
 <p style="margin-left: 2em; margin-top: -1em"></p>
