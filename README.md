@@ -1,7 +1,13 @@
 # InterControl: Generate Human Motion Interactions by Controlling Every Joint
 
 ## Demo
+Due to HumanML3D has no hand joints, interactions involving hands are achieved by setting distances between wrists. It is the reason of penetrations of hands. Captions are explanations for joint contact pairs, not text prompts.
 <table class="center">
+ <tr style="line-height: 0">
+  <td style="border: none; text-align: center">A person using right foot to kick another's left shoulder</td>
+  <td style="border: none; text-align: center">Two people's right feet are contacted while left feet are seperated by 1.8m.</td>
+  <td style="border: none; text-align: center">Three people's right feet are contacted together.</td>
+  </tr>
     <tr>
     <td><img src="./assets/foot_kicks_shoulder.gif"></td>
     <td><img src="./assets/foot_push_and_pull.gif"></td>
@@ -12,6 +18,11 @@
 
 
 <table class="center">
+<tr style="line-height: 0">
+  <td style="border: none; text-align: center">Person A uses right wrist to touch Person B's right shoulder, then Person B uses left wrist to touch Person B's left shoulder.</td>
+  <td style="border: none; text-align: center">Two people's right wrists are contacted while left wrists are seperated by 2.4m.</td>
+  <td style="border: none; text-align: center">Two people are shaking hands with right wrists.</td>
+  </tr>
     <tr>
     <td><img src="./assets/three_people.gif"></td>
     <td><img src="./assets/hand-push-and-pull.gif"></td>
@@ -22,6 +33,11 @@
 
 
 <table class="center">
+    <tr style="line-height: 0">
+  <td style="border: none; text-align: center">Two people are using right feet to kick each other.</td>
+  <td style="border: none; text-align: center">A person chases another person and shakes hands by right wrists.</td>
+  <td style="border: none; text-align: center">A person chases another person and put left/right hands on another one's left-right shoulder.</td>
+  </tr>
     <tr>
     <td><img src="./assets/foot_kicks_foot.gif"></td>
     <td><img src="./assets/back_shake_hands.gif"></td>
