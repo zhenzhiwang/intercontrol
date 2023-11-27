@@ -1,10 +1,30 @@
 # InterControl: Generate Human Motion Interactions by Controlling Every Joint
 
-Our code is developed from [PriorMDM](https://arxiv.org/abs/2303.01418), therefore shares similar dependencies and setup instructions.
+## Demo
+<table class="center">
+    <tr>
+    <td><img src="./assets/foot_kicks_shoulder.gif"></td>
+    <td><img src="./assets/shake_hands.gif"></td>
+    <td><img src="./assets/three_people_foot.gif"></td>
+    <td><img src="./assets/three_people.gif"></td>
+    </tr>
+</table>
+<p style="margin-left: 2em; margin-top: -1em"></p>
+
+
+<table class="center">
+    <tr>
+    <td><img src="./assets/hand-push-and-pull.gif"></td>
+    <td><img src="./assets/foot_push_and_pull.gif"></td>
+    <td><img src="./assets/foot_kicks_foot.gif"></td>
+    <td><img src="./assets/back_shake_hands.gif"></td>
+    </tr>
+</table>
+<p style="margin-left: 2em; margin-top: -1em"></p>
 
 ## Getting started
 
-This code was tested on `Ubuntu 18.04.5 LTS` and requires:
+Our code is developed from [PriorMDM](https://arxiv.org/abs/2303.01418), therefore shares similar dependencies and setup instructions, which requires:
 
 * Python 3.8
 * conda3 or miniconda3
