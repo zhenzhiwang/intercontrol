@@ -4,7 +4,7 @@
 Due to HumanML3D has no hand joints, interactions involving hands are achieved by setting distances between wrists. It is the reason of penetrations of hands. Captions are explanations for joint contact pairs, not text prompts.
 <table class="center">
  <tr style="line-height: 0">
-  <td style="border: none; text-align: center">A person using right foot to kick another's left shoulder</td>
+  <td style="border: none; text-align: center">A person uses right foot to kick another's left shoulder.</td>
   <td style="border: none; text-align: center">Two people's right feet are contacted while left feet are seperated by 1.8m.</td>
   <td style="border: none; text-align: center">Three people's right feet are contacted together.</td>
   </tr>
@@ -34,7 +34,7 @@ Due to HumanML3D has no hand joints, interactions involving hands are achieved b
 
 <table class="center">
     <tr style="line-height: 0">
-  <td style="border: none; text-align: center">Two people are using right feet to kick each other.</td>
+  <td style="border: none; text-align: center">Two people uses right feet to kick each other.</td>
   <td style="border: none; text-align: center">A person chases another person and shakes hands by right wrists.</td>
   <td style="border: none; text-align: center">A person chases another person and put left/right hands on another one's left/right shoulder.</td>
   </tr>
