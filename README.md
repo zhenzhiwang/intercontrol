@@ -1,4 +1,9 @@
-# InterControl: Generate Human Motion Interactions by Controlling Every Joint
+# InterControl
+This repository is the official implementation of [InterControl](http://arxiv.org/abs/2311.15864).
+
+**[InterControl : Generate Human Motion Interactions by Controlling Every Joint](http://arxiv.org/abs/2311.15864)**
+**Zhenzhi Wang**, Jingbo Wang, Dahua Lin, Bo Dai.
+
 
 ## Demo
 Due to HumanML3D has no hand joints, interactions involving hands are achieved by setting distances between wrists. It is the reason of penetrations of hands. Captions are explanations for joint contact pairs, not text prompts.
@@ -9,8 +14,8 @@ Due to HumanML3D has no hand joints, interactions involving hands are achieved b
   <td style="border: none; text-align: center">Three people's right feet are contacted together.</td>
   </tr>
     <tr>
-    <td><img src="./assets/foot_kicks_shoulder.gif"></td>
-    <td><img src="./assets/foot_push_and_pull.gif"></td>
+    <td><img src="./assets/kicks_shoulder.gif"></td>
+    <td><img src="./assets/foot_pull_and_push.gif"></td>
     <td><img src="./assets/three_people_foot.gif"></td>
     </tr>
 </table>
@@ -19,13 +24,13 @@ Due to HumanML3D has no hand joints, interactions involving hands are achieved b
 
 <table class="center">
 <tr style="line-height: 0">
-  <td style="border: none; text-align: center">Person A uses right wrist to touch Person B's right shoulder, then Person B uses left wrist to touch Person B's left shoulder.</td>
+  <td style="border: none; text-align: center">Person A uses right wrist to touch Person B's right shoulder, then Person B uses left wrist to touch Person C's left shoulder.</td>
   <td style="border: none; text-align: center">Two people's right wrists are contacted while left wrists are seperated by 2.4m.</td>
   <td style="border: none; text-align: center">Two people are shaking hands with right wrists.</td>
   </tr>
     <tr>
     <td><img src="./assets/three_people.gif"></td>
-    <td><img src="./assets/hand-push-and-pull.gif"></td>
+    <td><img src="./assets/hand_push_and_pull.gif"></td>
     <td><img src="./assets/shake_hands.gif"></td>
     </tr>
 </table>
@@ -45,6 +50,10 @@ Due to HumanML3D has no hand joints, interactions involving hands are achieved b
     </tr>
 </table>
 <p style="margin-left: 2em; margin-top: -1em"></p>
+
+
+## Abstract
+Text-conditioned human motion generation model has achieved great progress by introducing diffusion models and corresponding control signals. However, the interaction between humans are still under explored. To model interactions of arbitrary number of humans, we define interactions as human joint pairs that are either in contact or separated, and leverage Large Language Model (LLM) Planner to translate interaction descriptions into contact plans. Based on the contact plans, interaction generation could be achieved by spatially controllable motion generation methods by taking joint contacts as spatial conditions. We present a novel approach named InterControl for flexible spatial control of every joint in every person at any time by leveraging motion diffusion model only trained on single-person data. We incorporate a motion controlnet to generate coherent and realistic motions given sparse spatial control signals and a loss guidance module to precisely align any joint to the desired position in a classifier guidance manner via Inverse Kinematics (IK). Extensive experiments on HumanML3D and KIT-ML dataset demonstrate its effectiveness in versatile joint control. We also collect data of joint contact pairs by LLMs to show InterControl's ability in human interaction generation.
 
 ## Getting started
 
