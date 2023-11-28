@@ -2,10 +2,10 @@
 This repository is the official implementation of [InterControl](http://arxiv.org/abs/2311.15864).
 
 **[InterControl : Generate Human Motion Interactions by Controlling Every Joint](http://arxiv.org/abs/2311.15864)**
+
 **Zhenzhi Wang**, Jingbo Wang, Dahua Lin, Bo Dai.
 
-
-## Demo
+## Interaction Demo
 Due to HumanML3D has no hand joints, interactions involving hands are achieved by setting distances between wrists. It is the reason of penetrations of hands. Captions are explanations for joint contact pairs, not text prompts.
 <table class="center">
  <tr style="line-height: 0">

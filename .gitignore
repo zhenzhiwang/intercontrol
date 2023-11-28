@@ -12,6 +12,8 @@ body_models/smpl/
 *.pth
 *.log
 *.zip
+*/.DS_Store
+.DS_Store
 
 
 # Byte-compiled / optimized / DLL files
