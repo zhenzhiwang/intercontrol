@@ -57,13 +57,13 @@ Text-conditioned human motion generation model has achieved great progress by in
 
 ## Getting started
 
-Our code is developed from [PriorMDM](https://arxiv.org/abs/2303.01418), therefore shares similar dependencies and setup instructions, which requires:
+Our code is developed from [PriorMDM](https://github.com/priorMDM/priorMDM), therefore shares similar dependencies and setup instructions, which requires:
 
 * Python 3.8
 * conda3 or miniconda3
 * CUDA capable GPU (one is enough)
 
-### 1. Setup environment following PriorMDM instructions
+### 1. Setup environment (similar to PriorMDM)
 
 Install ffmpeg (if not already installed):
 
@@ -71,12 +71,11 @@ Install ffmpeg (if not already installed):
 sudo apt update
 sudo apt install ffmpeg
 ```
-For windows use [this](https://www.geeksforgeeks.org/how-to-install-ffmpeg-on-windows/) instead.
 
 Setup conda env:
 ```shell
 conda env create -f environment.yml
-conda activate PriorMDM
+conda activate InterControl
 python -m spacy download en_core_web_sm
 pip install git+https://github.com/openai/CLIP.git
 pip install git+https://github.com/GuyTevet/smplx.git
@@ -120,38 +119,68 @@ cp -r ../HumanML3D/HumanML3D ./dataset/HumanML3D
 
 </details>
 
-### 3. Download MDM pretrained models
+
+### 3. Download weights trained on HumanML3D dataset
 
 Download the model(s) you wish to use, then unzip and place it in `./save/`.
 
-* [my_humanml-encoder-512](https://drive.google.com/file/d/1RCqyKfj7TLSp6VzwrKa84ldEaXmVma1a/view?usp=share_link) (This is a reproduction of MDM best model without any changes)
+#### InterControl weights with loss guidance on $$
+
+* all joints control, finetuned for sparse signals in temporal [mask0.25_bfgs5_posterior_all](https://drive.google.com/file/d/1TOGGh2o0-kNM0hfZd6bwfdg0czJH56BQ/view?usp=drive_link)
+
+* all joints control, checkpoint for single-person data evalution [mask1_bfgs5_posterior_all](https://drive.google.com/file/d/1fPKgWLlT61gJ0vaoDUgZ6WtwPrhNRoRb/view?usp=drive_link)
+
+#### InterControl weights with loss guidance on $x_0$ 
+
+* all joints control [mask1_x0_all](https://drive.google.com/file/d/15_GRUnSlT1dW2llgRzJ5uIpsxx1Y14QO/view?usp=drive_link)
+
+* pelvis control [mask1_x0_pelvis](https://drive.google.com/file/d/1UXz9dQkWA7wWdxsrEcmrn8nuvgnFUtcS/view?usp=drive_link)
+
+#### MDM weights (needed for InterControl **training**) 
+* [my_humanml-encoder-512](https://drive.google.com/file/d/1RCqyKfj7TLSp6VzwrKa84ldEaXmVma1a/view?usp=share_link)
 
 
 ## Single-Person Motion Generation
-
-### 1. Training
-The model will save in the directory `./save/`.
-
+### Sampling
 Loss Guidance on $\mu_t$
 ```shell
-python3 -m train.train_global_joint_control --save_dir save/posterior_mask1_bfgs5_humanml_all \
---dataset humanml --inpainting_mask global_joint --lr 0.00001 --mask_ratio 1 --control_joint all \
---use_posterior --bfgs_times_first 5
+python -m sample.global_joint_control --model_path save/mask0.25_bfgs5_posterior_all/model000140000.pt \
+--num_samples 32 --use_posterior --control_joint all
 ```
+It will visualize generated motions in the format of skeletons. To render SMPL meshes, please refer to the following section. 
 
-Loss Guidance on $x_0$
+#### Render SMPL mesh 
+The rendering part is exactly the same as [PriorMDM](https://github.com/priorMDM/priorMDM). We make no changes to it, except for a little bug that they add the root offset to the mesh twice. The following is the original instruction from [PriorMDM](https://github.com/priorMDM/priorMDM).
+
+To create SMPL mesh per frame run:
 
 ```shell
-python3 -m train.train_global_joint_control --save_dir save/mask1_bfgs0_humanml_all \
---dataset humanml --inpainting_mask global_joint --lr 0.00001 --mask_ratio 1 --control_joint all \
---bfgs_times_first 0
+python -m visualize.render_mesh --input_path /path/to/mp4/stick/figure/file
 ```
-### 2. Evaluation 
+
+**This script outputs:**
+* `sample##_rep##_smpl_params.npy` - SMPL parameters (thetas, root translations, vertices and faces)
+* `sample##_rep##_obj` - Mesh per frame in `.obj` format.
+
+**Notes:**
+* The `.obj` can be integrated into Blender/Maya/3DS-MAX and rendered using them.
+* This script is running [SMPLify](https://smplify.is.tue.mpg.de/) and needs GPU as well (can be specified with the `--device` flag).
+* **Important** - Do not change the original `.mp4` path before running the script.
+
+**Notes for 3d makers:**
+* You have two ways to animate the sequence:
+  1. Use the [SMPL add-on](https://smpl.is.tue.mpg.de/index.html) and the theta parameters saved to `sample##_rep##_smpl_params.npy` (we always use beta=0 and the gender-neutral model).
+  1. A more straightforward way is using the mesh data itself. All meshes have the same topology (SMPL), so you just need to keyframe vertex locations. 
+     Since the OBJs are not preserving vertices order, we also save this data to the `sample##_rep##_smpl_params.npy` file for your convenience.
+
+By adjusting the camera position and the lighting, you can get the same results as our **interaction demo**. 
+
+### Evaluation 
 Select checkpoint to be evluated by sepcifying the `model_path`, and use `replication_times` for multiple evaluations and get average results, the following evaluation script will generate motions for 10 times.
 
 Loss Guidance on $\mu_t$
 ```shell
-python3 -m eval.eval_controlmdm --model_path save/posterior_mask1_bfgs5_humanml_all/model000120000.pt \
+python3 -m eval.eval_controlmdm --model_path save/mask1_bfgs5_posterior_all/model000120000.pt \
 --replication_times 10 --mask_ratio 1 --bfgs_times_first 5 \
 --bfgs_times_last 10 --bfgs_interval 1 --use_posterior \
 --control_joint all 
@@ -160,44 +189,68 @@ python3 -m eval.eval_controlmdm --model_path save/posterior_mask1_bfgs5_humanml_
 Loss Guidance on $x_0$
 
 ```shell
-python3 -m eval.eval_controlmdm --model_path save/mask1_bfgs1_humanml_all/model000120000.pt \
+python3 -m eval.eval_controlmdm --model_path save/mask1_x0_all/model000160000.pt \
 --replication_times 10 --mask_ratio 1 --bfgs_times_first 1 \
 --bfgs_times_last 10 --bfgs_interval 1 \
 --control_joint all 
 ```
 
-### 3. Sampling
-Loss Guidance on $\mu_t$
+## Human Interaction Generation
+### Sampling
+**Two-people Interaction Sampling**
+It requires information in `sample.json` to generate interactions. The information could be copied from `./assets/all_plans.json` (our collected interaction plans from LLM planner) to generate different interactions. 
 ```shell
-python -m sample.global_joint_control --model_path save/mask1_bfgs1_humanml_all/model000120000.pt \
---num_samples 32 --use_posterior --control_joint all
+python -m sample.interactive_global_joint_control \
+--model_path save/mask0.25_bfgs5_posterior_all/model000140000.pt \
+--multi_person --bfgs_times_first 5 --bfgs_times_last 10 \
+--interaction_json './assets/sample.json' \
+```
+It will visualize generated motions in the format of skeletons. To render SMPL meshes, please refer to rendering section in single-person motion generation.
+
+**More than 3 people interaction sampling, need hand-crafted masks for each person**
+```shell
+python -m sample.more_people_global_joint_control \
+--model_path save/mask0.25_bfgs5_posterior_all/model000140000.pt \
+--multi_person --bfgs_times_first 5 --bfgs_times_last 10 --use_posterior \
 ```
 
-## Human Interaction Generation
-### 1. Evaluation 
+### Evaluation 
 Loss Guidance on $\mu_t$
 ```shell
-python3 -m eval.eval_interaction --model_path save/posterior_mask0.25_bfgs5_humanml_all/model000120000.pt \
+python3 -m eval.eval_interaction --model_path save/mask0.25_bfgs5_posterior_all/model000140000.pt \
 --replication_times 10 --bfgs_times_first 5 --bfgs_times_last 10 --bfgs_interval 1 \
 --use_posterior  --control_joint all \
 --interaction_json './assets/all_plans.json' \
 --multi_person
 ```
-### 2. Sampling
-Two-people Interaction Sampling
+
+
+## Training InterControl on HumanML3D
+The model will save in the directory `./save/` + values in `--save_dir`. It requires pretrained MDM weights, which can be downloaded from [my_humanml-encoder-512](https://drive.google.com/file/d/1RCqyKfj7TLSp6VzwrKa84ldEaXmVma1a/view?usp=share_link). Put the downloaded weights in `./save/` and make sure the checkpoint location is `./save/humanml_trans_enc_512/model000475000.pt`.
+
+Loss Guidance on $\mu_t$
 ```shell
-python -m sample.interactive_global_joint_control \
---model_path save/posterior_mask0.25_bfgs5_humanml_all/model000120000.pt \
---multi_person --bfgs_times_first 5 --bfgs_times_last 10 \
---interaction_json './assets/sample.json' \
+python3 -m train.train_global_joint_control --save_dir save/mask1_bfgs5_posterior_all \
+--dataset humanml --inpainting_mask global_joint --lr 0.00001 --mask_ratio 1 --control_joint all \
+--use_posterior --bfgs_times_first 5
 ```
 
-More than 3 people interaction sampling, need hand-crafted masks for each person
+Loss Guidance on $x_0$
+
 ```shell
-python -m sample.more_people_global_joint_control \
---model_path save/posterior_mask0.25_bfgs5_humanml_all/model000120000.pt \
---multi_person --bfgs_times_first 5 --bfgs_times_last 10 --use_posterior \
+python3 -m train.train_global_joint_control --save_dir save/mask1_x0_all \
+--dataset humanml --inpainting_mask global_joint --lr 0.00001 --mask_ratio 1 --control_joint all \
+--bfgs_times_first 0
 ```
+
+Only for pelvis control
+
+```shell
+python3 -m train.train_global_joint_control --save_dir save/mask1_x0_pelvis \
+--dataset humanml --inpainting_mask global_joint --lr 0.00001 --mask_ratio 1 --control_joint pelvis \
+--bfgs_times_first 0
+```
+
 ## Acknowledgments
 
 This code is standing on the shoulders of giants. We want to thank the following contributors

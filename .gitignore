@@ -1,17 +1,10 @@
 # data files
-dataset/
 save/
 logs/
-./glove
-./kit
-./t2m
 body_models/smpl/
-*.pkl
-*.npy
 *.pt
 *.pth
 *.log
-*.zip
 */.DS_Store
 .DS_Store
 
