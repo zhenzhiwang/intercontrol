@@ -124,11 +124,11 @@ cp -r ../HumanML3D/HumanML3D ./dataset/HumanML3D
 
 Download the model(s) you wish to use, then unzip and place it in `./save/`.
 
-#### InterControl weights with loss guidance on $$
+#### InterControl weights with loss guidance on $\mu_t$
 
 * all joints control, finetuned for sparse signals in temporal [mask0.25_bfgs5_posterior_all](https://drive.google.com/file/d/1TOGGh2o0-kNM0hfZd6bwfdg0czJH56BQ/view?usp=drive_link)
 
-* all joints control, checkpoint for single-person data evalution [mask1_bfgs5_posterior_all](https://drive.google.com/file/d/1fPKgWLlT61gJ0vaoDUgZ6WtwPrhNRoRb/view?usp=drive_link)
+* all joints control, checkpoint for HumanML3D dataset evalution [mask1_bfgs5_posterior_all](https://drive.google.com/file/d/1fPKgWLlT61gJ0vaoDUgZ6WtwPrhNRoRb/view?usp=drive_link)
 
 #### InterControl weights with loss guidance on $x_0$ 
 
