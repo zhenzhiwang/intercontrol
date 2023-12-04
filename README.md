@@ -251,6 +251,16 @@ python3 -m train.train_global_joint_control --save_dir save/mask1_x0_pelvis \
 --bfgs_times_first 0
 ```
 
+## Bibtex
+If you find this code useful in your research, please cite:
+```
+@article{wang2023intercontrol,
+  title={InterControl: Generate Human Motion Interactions by Controlling Every Joint},
+  author={Wang, Zhenzhi and Wang, Jingbo and Lin, Dahua and Dai, Bo},
+  journal={arXiv preprint arXiv:2311.15864},
+  year={2023}
+}
+```
 ## Acknowledgments
 
 This code is standing on the shoulders of giants. We want to thank the following contributors
