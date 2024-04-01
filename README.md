@@ -16,7 +16,7 @@ $^1$ CUHK, $^2$ Shanghai AI Lab.
     <tr>
     <td><img src="./assets/three people hold hands.gif"></td>
     <td><img src="./assets/three people fighting.gif"></td>
-    <td><img src="./assets/animation-three people fighting.gif"></td>
+    <td><img src="./assets/animation-three-people-fighting.gif"></td>
     </tr>
 </table>
 <p style="margin-left: 3em; margin-top: 1em"></p>
@@ -31,7 +31,7 @@ $^1$ CUHK, $^2$ Shanghai AI Lab.
     <tr>
     <td><img src="./assets/winner gesture in fighting games.gif"></td>
     <td><img src="./assets/two people fighting.gif"></td>
-    <td><img src="./assets/animation-two people fighting.gif"></td>
+    <td><img src="./assets/animation-two-people-fighting.gif"></td>
     </tr>
 </table>
 <p style="margin-left: 2em; margin-top: 1em"></p>
