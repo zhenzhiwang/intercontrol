@@ -1,55 +1,54 @@
 # InterControl
-This repository is the official implementation of [InterControl](http://arxiv.org/abs/2311.15864).
-
+This repository is the official implementation of
 **[InterControl : Generate Human Motion Interactions by Controlling Every Joint](http://arxiv.org/abs/2311.15864)**
 
-**Zhenzhi Wang**, Jingbo Wang, Dahua Lin, Bo Dai.
+**Zhenzhi Wang$^1$**, Jingbo Wang$^2$, Yixuan Li$^1$, Dahua Lin$^{1,2}$, Bo Dai$^2$.
+$^1$ CUHK, $^2$ Shanghai AI Lab.
 
-## Interaction Demo
-Due to HumanML3D has no hand joints, interactions involving hands are achieved by setting distances between wrists. It is the reason of penetrations of hands. Captions are explanations for joint contact pairs, not text prompts.
+## Interaction Visualization
 <table class="center">
- <tr style="line-height: 0">
-  <td style="border: none; text-align: center">A person uses right foot to kick another's left shoulder.</td>
-  <td style="border: none; text-align: center">Two people's right feet are contacted while left feet are seperated by 1.8m.</td>
-  <td style="border: none; text-align: center">Three people's right feet are contacted together.</td>
+ <tr style="line-height: 1">
+  <td style="border: none; text-align: center">Three people are holding hands together.</td>
+  <td style="border: none; text-align: center">Two people are fighting with another person, leading to a 2v1 fighting game.</td>
+  <td style="border: none; text-align: center">Character animation version of 2v1 fighting in a physics simulator.</td>
   </tr>
     <tr>
-    <td><img src="./assets/kicks_shoulder.gif"></td>
-    <td><img src="./assets/foot_pull_and_push.gif"></td>
-    <td><img src="./assets/three_people_foot.gif"></td>
+    <td><img src="./assets/three people hold hands.gif"></td>
+    <td><img src="./assets/three people fighting.gif"></td>
+    <td><img src="./assets/animation-three people fighting.gif"></td>
     </tr>
 </table>
-<p style="margin-left: 2em; margin-top: -1em"></p>
-
-
-<table class="center">
-<tr style="line-height: 0">
-  <td style="border: none; text-align: center">Person A uses right wrist to touch Person B's right shoulder, then Person B uses left wrist to touch Person C's left shoulder.</td>
-  <td style="border: none; text-align: center">Two people's right wrists are contacted while left wrists are seperated by 2.4m.</td>
-  <td style="border: none; text-align: center">Two people are shaking hands with right wrists.</td>
-  </tr>
-    <tr>
-    <td><img src="./assets/three_people.gif"></td>
-    <td><img src="./assets/hand_push_and_pull.gif"></td>
-    <td><img src="./assets/shake_hands.gif"></td>
-    </tr>
-</table>
-<p style="margin-left: 2em; margin-top: -1em"></p>
+<p style="margin-left: 3em; margin-top: 1em"></p>
 
 
 <table class="center">
-    <tr style="line-height: 0">
-  <td style="border: none; text-align: center">Two people uses right feet to kick each other.</td>
-  <td style="border: none; text-align: center">A person chases another person and shakes hands by right wrists.</td>
-  <td style="border: none; text-align: center">A person chases another person and put left/right hands on another one's left/right shoulder.</td>
+<tr style="line-height: 1">
+  <td style="border: none; text-align: center">A person wins the fighting game and the referee holding his hands up to celebrate his success.</td>
+  <td style="border: none; text-align: center">Two people are fighting with each other (1v1 fighting game).</td>
+  <td style="border: none; text-align: center">Character animation version of 1v1 fighting in a physics simulator.</td>
   </tr>
     <tr>
-    <td><img src="./assets/foot_kicks_foot.gif"></td>
-    <td><img src="./assets/back_shake_hands.gif"></td>
-    <td><img src="./assets/put_hand_on_shoulder_from_back.gif"></td>
+    <td><img src="./assets/winner gesture in fighting games.gif"></td>
+    <td><img src="./assets/two people fighting.gif"></td>
+    <td><img src="./assets/animation-two people fighting.gif"></td>
     </tr>
 </table>
-<p style="margin-left: 2em; margin-top: -1em"></p>
+<p style="margin-left: 2em; margin-top: 1em"></p>
+
+
+<table class="center">
+    <tr style="line-height: 1">
+  <td style="border: none; text-align: center">Two people are dancing together (sample 1).</td>
+  <td style="border: none; text-align: center">Two people are dancing together (sample 2).</td>
+  <td style="border: none; text-align: center">Two people are dancing together (sample 3).</td>
+  </tr>
+    <tr>
+    <td><img src="./assets/two people dance-sample1.gif"></td>
+    <td><img src="./assets/two people dance-sample2.gif"></td>
+    <td><img src="./assets/two people dance-sample3.gif"></td>
+    </tr>
+</table>
+<p style="margin-left: 2em; margin-top: 1em"></p>
 
 
 ## Abstract
