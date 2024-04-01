@@ -2,7 +2,8 @@
 This repository is the official implementation of
 **[InterControl : Generate Human Motion Interactions by Controlling Every Joint](http://arxiv.org/abs/2311.15864)**
 
-**Zhenzhi Wang$^1$**, Jingbo Wang$^2$, Yixuan Li$^1$, Dahua Lin$^{1,2}$, Bo Dai$^2$.
+**Zhenzhi Wang $^1$**, Jingbo Wang $^2$, Yixuan Li $^1$, Dahua Lin $^{1,2}$, Bo Dai $^2$.
+
 $^1$ CUHK, $^2$ Shanghai AI Lab.
 
 ## Interaction Visualization
